@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Space Grotesk', 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', sans-serif;
+  --font-body: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', sans-serif;
+  --brand: #46d7d4;
+  --brand-dark: #23c1be;
+  --brand-soft: #dcf7f6;
+  --brand-faint: #f3fbfc;
+  --canvas: #f6f8fb;
+  --surface: #ffffff;
+  --surface-2: #f3f7fa;
+  --border: #e6edf4;
+  --ink: #111827;
+  --muted: #90a0b2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fbfcfe 0%, #f3f7fb 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-black transition-all duration-150 hover:-translate-y-0.5 hover:bg-brand-dark hover:text-black;
+    box-shadow: 0 14px 34px rgba(20, 241, 149, 0.28);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-medium text-ink transition-all duration-150 hover:border-black/20 hover:bg-black hover:text-white;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm font-medium text-red-600 transition-all duration-150 hover:bg-red-100;
+  }
+
+  .card {
+    @apply rounded-[28px] border border-black/10 bg-white shadow-[0_20px_40px_rgba(0,0,0,0.06)];
+  }
+
+  .card-elevated {
+    @apply rounded-[32px] border border-black/10 bg-black text-white shadow-[0_24px_60px_rgba(0,0,0,0.22)];
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-slate/70 focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/20;
+  }
+
+  .label {
+    @apply mb-2 block text-[11px] font-semibold uppercase tracking-[0.24em] text-slate;
+  }
+
+  .badge-available {
+    @apply rounded-full border border-brand/30 bg-brand/20 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-black;
+  }
+
+  .badge-booked {
+    @apply rounded-full border border-black/10 bg-black px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white;
+  }
+
+  .badge-full {
+    @apply rounded-full border border-black/10 bg-black/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate;
+  }
+}
