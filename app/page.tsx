@@ -168,6 +168,7 @@ export default function GymCoach() {
     const [completedSets, setCompletedSets] = useState(0);
     const [repKey, setRepKey] = useState(0);
     const [barPct, setBarPct] = useState(0);
+    const [todayLabel, setTodayLabel] = useState("");
 
     interface Cache {
         counts: (string | null)[];
@@ -513,8 +514,11 @@ export default function GymCoach() {
         color: C.text,
     };
 
+    useEffect(() => {
+        setTodayLabel(new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long" }).format(new Date()));
+    }, []);
+
     const fmt = (seconds: number) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
-    const todayLabel = new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long" }).format(new Date());
     const totalReps = targetReps * targetSets;
     const estimatedMinutes = Math.round((startDelay + totalReps * countInterval + Math.max(0, targetSets - 1) * restTime) / 60 * 10) / 10;
     const planPercent = Math.max(6, Math.min(100, Math.round((totalReps / 200) * 100)));
