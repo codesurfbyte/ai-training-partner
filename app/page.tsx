@@ -253,23 +253,25 @@ export default function GymCoach() {
         window.speechSynthesis.speak(utterance);
     }, []);
 
-    const playUrl = useCallback((url: string | null, fallback: string, intensity: Intensity = "normal") => {
-        if (url) {
-            new Audio(url).play().catch(() => speak(fallback, intensity));
-        } else {
-            speak(fallback, intensity);
-        }
-    }, [speak]);
+    const playUrl = useCallback((url: string | null) => {
+        if (!url) return;
+        const audio = new Audio(url);
+        audio.play().catch(() => {
+            // 카운트 음성은 public 폴더 파일만 사용 (TTS fallback 미사용)
+        });
+    }, []);
 
-    const playCount = useCallback((index: number, fallback: string, intensity: Intensity = "normal") => {
+    const playCount = useCallback((index: number) => {
         const player = cache.current.countPlayers[index];
         if (player) {
             player.currentTime = 0;
-            player.play().catch(() => speak(fallback, intensity));
+            player.play().catch(() => {
+                // 카운트 음성은 public 폴더 파일만 사용 (TTS fallback 미사용)
+            });
             return;
         }
-        playUrl(cache.current.counts[index] ?? null, fallback, intensity);
-    }, [playUrl, speak]);
+        playUrl(cache.current.counts[index] ?? null);
+    }, [playUrl]);
 
     const releaseCountAudio = useCallback(() => {
         cache.current.countPlayers.forEach((player) => {
@@ -345,12 +347,10 @@ export default function GymCoach() {
         if (phaseRef.current !== "counting") return;
         const reps = targetRepsRef.current;
         const intervalMs = countIntervalRef.current * 1000;
-        const isAlmost = repNum >= reps - 1;
-
         setCurrentRep(repNum);
         setRepKey((key) => key + 1);
 
-        playCount(repNum - 1, KO_COUNTS[repNum - 1] || String(repNum), isAlmost ? "hype" : "normal");
+        playCount(repNum - 1);
 
         const encItem = encsRef.current.find((item) => item.rep === repNum);
         if (encItem?.text) {
