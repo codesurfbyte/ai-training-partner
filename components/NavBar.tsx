@@ -22,7 +22,7 @@ export default function NavBar() {
               Training Partner
             </span>
             <span className="mt-1 block text-[10px] uppercase tracking-[0.32em] text-slate">
-              Performance Booking System
+              Your AI Workout Partner
             </span>
           </div>
         </Link>

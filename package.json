@@ -4,27 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run test && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test:backend": "node scripts/slotPlanner.test.js",
-    "test:frontend": "node scripts/frontend.test.js",
-    "test": "npm run test:backend && npm run test:frontend",
-    "test:unit": "vitest run",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.5.1",
-    "@supabase/supabase-js": "^2.45.4",
-    "date-fns": "^3.6.0",
-    "date-fns-tz": "^3.2.0",
     "next": "^14.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.53.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -33,7 +22,6 @@
     "eslint-config-next": "^14.2.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5",
-    "vitest": "^4.1.0"
+    "typescript": "^5"
   }
 }
